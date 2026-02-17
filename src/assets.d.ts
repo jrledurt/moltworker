@@ -1,6 +1,6 @@
 // Type declarations for static asset imports
 // These are handled by Wrangler's module rules at runtime
-
+//Hi
 declare module '*.html' {
   const content: string;
   export default content;
