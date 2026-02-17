@@ -99,5 +99,7 @@
   // - CF_ACCOUNT_ID: Your Cloudflare account ID (for R2 endpoint URL)
 }
 [vars]
+CF_ACCESS_TEAM_DOMAIN = "jrledurt.cloudflareaccess.com"
+CF_ACCESS_AUD_TAG = "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe"
 CLOUDFLARE_ACCESS_AUDIENCE = "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe"
 CLOUDFLARE_ACCESS_CERTS_URL = "https://jrledurt.cloudflareaccess.com/cdn-cgi/access/certs"
