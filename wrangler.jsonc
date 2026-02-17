@@ -58,7 +58,7 @@
     }
   ],
   "browser": {
-    "binding": "BROWSER"
+    "binding": "BROWSER" 
   },
   "vars": {
     "CF_ACCESS_TEAM_DOMAIN": "jrledurt.cloudflareaccess.com",
