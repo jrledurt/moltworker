@@ -5,108 +5,66 @@
   "compatibility_date": "2025-05-06",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
-    "enabled": true,
+    "enabled": true
   },
-  // Static assets for admin UI (built by vite)
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "single-page-application",
     "html_handling": "auto-trailing-slash",
     "binding": "ASSETS",
-    "run_worker_first": true,
+    "run_worker_first": true
   },
-  // Allow importing HTML files as text modules and PNG files as binary
   "rules": [
     {
       "type": "Text",
       "globs": ["**/*.html"],
-      "fallthrough": false,
+      "fallthrough": false
     },
     {
       "type": "Data",
       "globs": ["**/*.png"],
-      "fallthrough": false,
-    },
+      "fallthrough": false
+    }
   ],
-  // Build command for vite
   "build": {
-    "command": "npm run build",
+    "command": "npm run build"
   },
-  // Container configuration for the Moltbot sandbox
   "containers": [
     {
       "class_name": "Sandbox",
       "image": "./Dockerfile",
       "instance_type": "standard-1",
-      "max_instances": 1,
-    },
+      "max_instances": 1
+    }
   ],
   "durable_objects": {
     "bindings": [
       {
         "class_name": "Sandbox",
-        "name": "Sandbox",
-      },
-    ],
+        "name": "Sandbox"
+      }
+    ]
   },
   "migrations": [
     {
       "new_sqlite_classes": ["Sandbox"],
-      "tag": "v1",
-    },
+      "tag": "v1"
+    }
   ],
-  // R2 bucket for persistent storage (moltbot data, conversations, etc.)
   "r2_buckets": [
     {
       "binding": "MOLTBOT_BUCKET",
-      "bucket_name": "moltbot-data",
-    },
+      "bucket_name": "moltbot-data"
+    }
   ],
-
-  // Browser Rendering binding for CDP shim
   "browser": {
-    "binding": "BROWSER",
+    "binding": "BROWSER"
   },
-  // Note: CF_ACCOUNT_ID should be set via `wrangler secret put CF_ACCOUNT_ID`
-  // Secrets to configure via `wrangler secret put`:
-  //
-  // AI Provider (at least one set required):
-  // - ANTHROPIC_API_KEY: Direct Anthropic API key
-  // - OPENAI_API_KEY: Direct OpenAI API key
-  // - Cloudflare AI Gateway (alternative to direct keys):
-  //   - CLOUDFLARE_AI_GATEWAY_API_KEY: API key for requests through the gateway
-  //   - CF_AI_GATEWAY_ACCOUNT_ID: Your Cloudflare account ID
-  //   - CF_AI_GATEWAY_GATEWAY_ID: Your AI Gateway ID
-  // - Legacy AI Gateway (still supported):
-  //   - AI_GATEWAY_API_KEY: API key
-  //   - AI_GATEWAY_BASE_URL: Gateway endpoint URL
-  //
-  // Authentication:
-  // - MOLTBOT_GATEWAY_TOKEN: Token to protect gateway access
-  // - CF_ACCESS_TEAM_DOMAIN: Cloudflare Access team domain
-  // - CF_ACCESS_AUD: Cloudflare Access application audience
-  //
-  // Chat channels (optional):
-  // - TELEGRAM_BOT_TOKEN, DISCORD_BOT_TOKEN, SLACK_BOT_TOKEN, SLACK_APP_TOKEN
-  //
-  // Browser automation (optional):
-  // - CDP_SECRET: Shared secret for /cdp endpoint authentication
-  // - WORKER_URL: Public URL of the worker
-  //
-  // R2 persistent storage (optional, for data persistence across sessions):
-  // - R2_ACCESS_KEY_ID: R2 access key ID (from R2 API tokens)
-  // - R2_SECRET_ACCESS_KEY: R2 secret access key (from R2 API tokens)
-  // - CF_ACCOUNT_ID: Your Cloudflare account ID (for R2 endpoint URL)
+  "vars": {
+    "CF_ACCESS_TEAM_DOMAIN": "jrledurt.cloudflareaccess.com",
+    "CF_ACCESS_AUD_TAG": "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe",
+    "CLOUDFLARE_ACCESS_AUDIENCE": "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe",
+    "CLOUDFLARE_ACCESS_CERTS_URL": "https://jrledurt.cloudflareaccess.com/cdn-cgi/access/certs",
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api/v1"
+  }
 }
-[vars]
-CF_ACCESS_TEAM_DOMAIN = "jrledurt.cloudflareaccess.com"
-CF_ACCESS_AUD_TAG = "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe"
-CLOUDFLARE_ACCESS_AUDIENCE = "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe"
-CLOUDFLARE_ACCESS_CERTS_URL = "https://jrledurt.cloudflareaccess.com/cdn-cgi/access/certs"
-
-# Point the worker to OpenRouter's API
-ANTHROPIC_BASE_URL = "https://openrouter.ai/api/v1"
-
-# Set the default models (Optional: use openrouter/auto for smart routing)
-ANTHROPIC_DEFAULT_HAIKU_MODEL = "openrouter/auto"
-ANTHROPIC_DEFAULT_SONNET_MODEL = "google/gemini-pro-1.5"
