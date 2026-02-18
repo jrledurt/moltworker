@@ -133,8 +133,7 @@ jobs:
 
               # Extract middle frame as thumbnail
               duration=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4")
-              midpoint=$(python3 -c "import sys; print(float(sys.argv[1])/2)" "$duration") "$duration / 2" | awk '{printf \"%.2f\", $1/2}')
-              ffmpeg -y -ss "$midpoint" -i "$mp4" -vframes 1 -update 1 -q:v 2 "$thumb"
+              midpoint=$(python3 -c "import sys; print(float(sys.argv[1])/2)" "$duration")              ffmpeg -y -ss "$midpoint" -i "$mp4" -vframes 1 -update 1 -q:v 2 "$thumb"
 
               # Add play button overlay
               width=$(identify -format '%w' "$thumb")
