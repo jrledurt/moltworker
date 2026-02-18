@@ -1,11 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "moltbot-sandbox",  "main": "src/index.ts",
+  "name": "moltbot-sandbox",
+  "main": "src/index.ts",
   "compatibility_date": "2025-05-06",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
-  },  
+  },
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "single-page-application",
@@ -57,10 +58,9 @@
     }
   ],
   "browser": {
-    "binding": "BROWSER" 
+    "binding": "BROWSER"
   },
   "vars": {
     "CF_ACCESS_TEAM_DOMAIN": "jrledurt.cloudflareaccess.com"
-    // All other values (CF_ACCESS_AUD, AI Gateway IDs, etc.) 
-    // are managed securely in the Cloudflare Dashboard.
   }
+}
