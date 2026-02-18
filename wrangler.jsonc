@@ -60,10 +60,7 @@
     "binding": "BROWSER" 
   },
   "vars": {
-    "CF_ACCESS_TEAM_DOMAIN": "jrledurt.cloudflareaccess.com",
-    "CF_ACCESS_AUD_TAG": "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe",
-    "CLOUDFLARE_ACCESS_AUDIENCE": "7e0df96f6e432548772a60ad9b750c897d7ec4714aa63c25110a9cbad77276fe",
-    "CLOUDFLARE_ACCESS_CERTS_URL": "https://jrledurt.cloudflareaccess.com/cdn-cgi/access/certs",
-    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api/v1"
+    "CF_ACCESS_TEAM_DOMAIN": "jrledurt.cloudflareaccess.com"
+    // All other values (CF_ACCESS_AUD, AI Gateway IDs, etc.) 
+    // are managed securely in the Cloudflare Dashboard.
   }
-}
